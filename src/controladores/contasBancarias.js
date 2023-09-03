@@ -1,6 +1,10 @@
 const contasBancarias = require('../bancodedados');
 
-const listaContas = (req, res) => {}
+const listaContas = (req, res) => {
+    const { contas } = req.query;
+    let resultado = contas;
+    res.send(resultado);
+}
 
 const criaConta = (req, res) => {}
 
@@ -27,5 +31,5 @@ module.exports = {
     saqueConta,
     transferenciaEntreContas,
     consultarSaldoConta,
-    emitirExtratoBancario,
+    emitirExtratoBancario
 }
