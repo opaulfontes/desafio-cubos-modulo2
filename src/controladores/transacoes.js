@@ -8,14 +8,14 @@ const depositar = (req, res) => {
         return res.status(400).json({ mensagem: 'O número da conta e o valor são obrigatórios!'});
 }
 
-const contaEncontrada = contas.find(conta => Number(conta.numero) === Number(numero_conta));
+    const contaEncontrada = contas.find(conta => Number(conta.numero) === Number(numero_conta));
 
-if (!contaEncontrada) {
-    return res.status(404).json({ mensagem: 'Conta não encontrada!'});
+    if (!contaEncontrada) {
+        return res.status(404).json({ mensagem: 'Conta não encontrada!'});
 }
 
-if (valor <= 0) {
-    return res.status(400).json({ mensagem: 'O valor não pode ser menor ou igual a 0'});
+    if (valor <= 0) {
+        return res.status(400).json({ mensagem: 'O valor não pode ser menor ou igual a 0'});
 }
 
 contaEncontrada.saldo += valor;
