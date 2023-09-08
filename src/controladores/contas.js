@@ -107,10 +107,32 @@ const excluirConta = (req, res) => {
 
     return res.status(204).send();
 }
+
+const saldo = (req, res) => {
+    const { numero_conta, senha } = req.params;
+
+    if (!numero_conta || !senha) {
+        return res.status(400).json({ mensagem: 'O número da conta e a senha são obrigatórios!'});
+}
+
+    const contaEncontrada = contas.find(conta => Number(conta.numero) === Number(numeroConta));
+
+    if (!contaEncontrada) {
+    return res.status(404).json({ mensagem: 'Conta inexistente!'});
+}
+
+    if (contaEncontrada.usuario.senha !== senha) {
+        return res.status(200).json({ mensagem: "Senha inválida!"})
+    }
+
+    return res.json({saldo: contaEncontrada.saldo});
+
+}
  
 module.exports = {
     listarContas,
     criarConta,
     atualizarUsuarioConta,
-    excluirConta
+    excluirConta,
+    saldo
 }
